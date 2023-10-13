@@ -6,7 +6,13 @@
 
 推荐将此模板以下载方式下载到本地，而不是克隆！  
 
-[下载模板](https://github.com/Lightning-Development-team/node.js-template/archive/refs/heads/main.zip)
+[下载模板](https://github.com/Lightning-Development-team/node.js-template/archive/refs/heads/main.zip)  
+
+然后
+
+```shell
+npm i
+```
 
 ### 目录:
 
