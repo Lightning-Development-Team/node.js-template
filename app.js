@@ -15,10 +15,11 @@ const resource = express.static(join(__dirname, "wwwroot"))
 
 // 使用中间件
 // Express.use,get,post等都是按定义的顺序以异步执行的
-// 依次为 JSON 请求体解析中间件、静态资源中间件、日志中间件、跨域中间件
-app.use(json, resource, logger(), cors())
+// 这里顺序为 静态资源中间件、JSON请求体解析中间件、日志中间件、跨域中间件
+// 即静态资源/index.html的优先度比后面app.get("/",...)的优先度高
+app.use(resource, json, logger(), cors())
 
-// 处理post
+// 处理post请求
 app.post("/hello", (request, response, next) => {
     // todo
     response.send({
@@ -26,11 +27,11 @@ app.post("/hello", (request, response, next) => {
     })
 })
 
-// 处理get
+// 处理get请求
 // 如果你只单纯搭建web后端服务器, 一般不会用到Express.get
 app.get("/", async (request, response, next) => {
     // todo
-    // 如果你想在服务器发起http请求, 一般使用Axios
+    // 如果你想在Express服务器发起http请求, 一般使用Axios
     response.send((await axios.get("https://nano71.com/error")).data)
 })
 
